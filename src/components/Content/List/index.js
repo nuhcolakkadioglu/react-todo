@@ -12,9 +12,6 @@ function List() {
                     <Item key={todo.id} todo={todo} />
                 ))
             }
-
-
-
         </ul>
     )
 }
