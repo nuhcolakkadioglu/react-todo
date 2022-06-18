@@ -1,10 +1,19 @@
 import React from 'react'
+import { useTodo } from '../../../contexts/TodoContext'
 
 export default function Item({ todo }) {
+    const { toggleTodo } = useTodo();
+    const onChange = (id) => {
+
+        toggleTodo(id);
+
+    }
     return (
         <li key={todo.id} className={todo.completed ? "completed" : ""}>
             <div className="view">
-                <input className="toggle" type="checkbox" checked={todo.com} />
+                <input className="toggle" type="checkbox"
+                    onChange={() => onChange(todo.id)}
+                    checked={todo.completed} />
                 <label>{todo.text}</label>
                 <button className="destroy"></button>
             </div>

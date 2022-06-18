@@ -12,10 +12,20 @@ export const TodoProvider = ({ children }) => {
     );
     const addTodo = (text) => setTodos((prev) => [...prev, { id: uuidv4(), text: text, completed: false }])
 
+    const toggleTodo = (id) => {
+        const cloneTodos = [...todos];
+        const itemIndex = cloneTodos.findIndex(todo => todo.id === id);
+        const item = todos[itemIndex];
+
+        item.completed = !item.completed
+        setTodos(cloneTodos);
+    }
+
     const values = {
         todos,
         setTodos,
-        addTodo
+        addTodo,
+        toggleTodo
     };
 
     return <TodoContext.Provider value={values}>
