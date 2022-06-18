@@ -2,12 +2,10 @@ import React from 'react'
 import { useTodo } from '../../../contexts/TodoContext'
 
 export default function Item({ todo }) {
-    const { toggleTodo } = useTodo();
-    const onChange = (id) => {
+    const { onDestroy, toggleTodo } = useTodo();
+    const onChange = (id) => toggleTodo(id);
 
-        toggleTodo(id);
 
-    }
     return (
         <li key={todo.id} className={todo.completed ? "completed" : ""}>
             <div className="view">
@@ -15,7 +13,7 @@ export default function Item({ todo }) {
                     onChange={() => onChange(todo.id)}
                     checked={todo.completed} />
                 <label>{todo.text}</label>
-                <button className="destroy"></button>
+                <button onClick={() => onDestroy(todo.id)} className="destroy"></button>
             </div>
         </li>
     )

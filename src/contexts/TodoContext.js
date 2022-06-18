@@ -21,11 +21,17 @@ export const TodoProvider = ({ children }) => {
         setTodos(cloneTodos);
     }
 
+    const onDestroy = (id) => {
+        const item = todos.filter(m => m.id !== id);
+        setTodos(item)
+    }
+
     const values = {
         todos,
         setTodos,
         addTodo,
-        toggleTodo
+        toggleTodo,
+        onDestroy
     };
 
     return <TodoContext.Provider value={values}>
